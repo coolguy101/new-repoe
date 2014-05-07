@@ -1,0 +1,62 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_item_search"
+        android:actionViewClass="android.widget.SearchView"
+        
+        android:showAsAction="always"
+        android:icon="@drawable/magnifying_glass"
+        android:title="Search">
+    </item>
+    <item
+        android:id="@+id/item1"
+        android:enabled="true"
+        android:orderInCategory="1"
+        android:showAsAction="always"
+        android:icon="@drawable/pen_1"
+        android:title="NEW"
+        android:visible="true">
+    </item>
+    <item
+        android:id="@+id/item2"
+        android:enabled="true"
+        android:orderInCategory="2"
+        android:showAsAction="always"
+        android:icon="@drawable/pin_2"
+        android:title="Location"
+        android:visible="true">
+    </item>
+    <item
+        android:id="@+id/item99"
+        android:showAsAction="never"
+        android:title="My Profile">
+    </item>
+    <item
+        android:id="@+id/item3"
+        android:showAsAction="never"
+        android:title="Sort By Date">
+    </item>
+    <item
+        android:id="@+id/item4"
+        android:showAsAction="never"
+        android:title="Sort By Picture">
+    </item>
+    <item
+        android:id="@+id/item5"
+        android:showAsAction="never|withText"
+        android:icon="@drawable/heart"
+        
+        android:title="My Favourite">
+    </item>
+    <item
+        android:id="@+id/item6"
+        android:showAsAction="never"
+        android:title="My Save">
+    </item>
+    <item
+        android:id="@+id/item7"
+        android:showAsAction="never"
+        android:title="Logout">
+    </item>
+
+</menu>
