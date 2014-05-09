@@ -33,6 +33,7 @@
             android:layout_height="wrap_content"
             android:text="Send"
             android:layout_alignParentRight="true"
+            
             />
     </RelativeLayout>
     
