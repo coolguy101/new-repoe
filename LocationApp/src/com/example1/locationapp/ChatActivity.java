@@ -9,8 +9,12 @@ import org.jivesoftware.smack.MessageListener;
 import org.jivesoftware.smack.SmackAndroid;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
+import org.jivesoftware.smack.filter.MessageTypeFilter;
+import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.packet.Message;
+import org.jivesoftware.smack.packet.Packet;
 import org.jivesoftware.smack.packet.Presence;
+import org.jivesoftware.smackx.receipts.DeliveryReceiptRequest;
 
 import Model.Comments;
 import android.app.ActionBar;
@@ -38,7 +42,8 @@ public class ChatActivity extends Activity {
 	private Button button;
 	private ChatManager chatManager;
 	private EditText chatEditText;
-	
+	private Context context = this;
+	private PacketFilter packFilter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -49,48 +54,34 @@ public class ChatActivity extends Activity {
 		ListViewAdapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,ListViewItem);
 		ChatListView.setAdapter(ListViewAdapter);
 		button = (Button) findViewById(R.id.chatbutton);
-		Context context = this;
 		SmackAndroid.init(context);
 		ConnectionConfiguration config = new ConnectionConfiguration("54.186.214.150", 5222);
         connection = new XMPPConnection(config);
+        connection.DEBUG_ENABLED = true;
         chatManager = connection.getChatManager();
         chatEditText = (EditText) findViewById(R.id.chatbox);
         ActionBar bar = getActionBar();
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#ffFEBB31"));
         bar.setBackgroundDrawable(colorDrawable);
         bar.setHomeButtonEnabled(true);
+        packFilter = new MessageTypeFilter(Message.Type.chat);
         button.setOnClickListener(new OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				new AsyncTask<Void, Void, Void>()
-				{
 
-					@Override
-					protected Void doInBackground(Void... params) {
-						// TODO Auto-generated method stub
-						final Chat chat = chatManager.createChat("yazhou2@54.186.214.150",new MessageListener() {
-							
-							@Override
-							public void processMessage(Chat arg0, Message arg1) {
-								// TODO Auto-generated method stub
-								try {
-									arg0.sendMessage("wocaoo");
-								} catch (XMPPException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-							}
-						});
-						
-						return null;
-					}
-					
-				}.execute();
-				
-				
-			}
+					SmackAndroid.init(context);
+					final Message newMessage = new Message("yazhou2@54.186.214.150", Message.Type.normal);
+					newMessage.setBody("omgomg");
+					newMessage.addBody("wocao", "hehe");
+					new AsyncTask<Void, Void, Void>(){
+
+						@Override
+						protected Void doInBackground(Void... params) {
+							connection.sendPacket(newMessage);
+							return null;
+						}}.execute();
+					System.out.println("button pressed");}
+	
 		});
         new AsyncTask<Void, Void, Void>()
         {
@@ -99,12 +90,11 @@ public class ChatActivity extends Activity {
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try{
-		        connection.connect();
+				connection.connect();
 		        connection.login("yazhou1","123456");
 		        Presence presence = new Presence(Presence.Type.available);
 		        presence.setStatus("chat with me");
 		        connection.sendPacket(presence);
-		        
 		        }
 		        catch(Exception e)
 		        {
