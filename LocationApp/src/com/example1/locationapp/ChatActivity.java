@@ -70,7 +70,7 @@ public class ChatActivity extends Activity {
 			public void onClick(View v) {
 
 					SmackAndroid.init(context);
-					final Message newMessage = new Message("yazhou2@54.186.214.150", Message.Type.normal);
+					final Message newMessage = new Message("yazhou2@ip-54-186-214-150", Message.Type.normal);
 					newMessage.setBody("omgomg");
 					newMessage.addBody("wocao", "hehe");
 					new AsyncTask<Void, Void, Void>(){
