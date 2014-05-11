@@ -16,18 +16,33 @@ import android.os.Handler;
 import android.widget.ArrayAdapter;
 
 /**
- * This class is used to send msg, recevied msg, and login to XMPP server
+ * This class is used to send msg,get msg, and login to XMPP server
+ * you can't use the keyword "NEW" to make a instance of this class,
+ * but you can call getIMcontrollerInstance() function to get a instance of this class
  * @author yazhou
- *
  */
 public class IMcontroller {
+	
 	private static XMPPConnection connection;
 	private static String incomingMessage;
+	private static IMcontroller instance=null; 
 	
-	public IMcontroller(Context context)
+	private IMcontroller(Context context)
 	{
 		SmackAndroid.init(context);// must have this line
-		
+	}
+	/**
+	 * use this function to get IMcontroller, this is a singleton design pattern
+	 * @param context
+	 * @return
+	 */
+	public static IMcontroller getIMcontrollerInstance(Context context)
+	{
+		if(instance==null)
+		{
+			instance = new IMcontroller(context);
+		}
+		return instance;
 	}
 
 	/**
@@ -51,7 +66,7 @@ public class IMcontroller {
 	}
 	/**
 	 * Login to the XMPP server
-	 * @param ip xxx.xxx.xxx.xxx
+	 * @param ip of the XMPP server. Example: xxx.xxx.xxx.xxx 
 	 * @param port default XMPP port is 5222, but you can use your own port
 	 * @param userName your account name
 	 * @param password your password

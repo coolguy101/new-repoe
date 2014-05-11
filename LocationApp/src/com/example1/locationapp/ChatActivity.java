@@ -47,7 +47,7 @@ public class ChatActivity extends Activity {
 	private Context context = this;
 	private PacketFilter packFilter = new MessageTypeFilter(Message.Type.chat);
 	private Handler handler = new Handler();
-	private IMcontroller IMcontroller;
+	private IMcontroller IMcontrol;
 	public final static String IP = "54.186.214.150";
 	public final static int PORT = 5222;
 	@Override
@@ -55,9 +55,9 @@ public class ChatActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chat);
 		comment = (Comments) getIntent().getSerializableExtra("comments");
-		initView();
-		IMcontroller = new IMcontroller(context);  // make a new controller for IM
-		IMcontroller.loginXMPPserver(IP,PORT,"yazhou1","123456");// hardcode userName and password for testing
+		initView(); // must have this line
+		IMcontrol = IMcontroller.getIMcontrollerInstance(context);  // make a new controller for IM
+		IMcontrol.loginXMPPserver(IP,PORT,"yazhou1","123456");// hardcode userName and password for testing
 		ListenToIncomingMsg();
 		button.setOnClickListener(new OnClickListener() {
 			@Override
@@ -65,7 +65,7 @@ public class ChatActivity extends Activity {
 					String MyMessage = chatEditText.getText().toString();
 					if(!MyMessage.isEmpty())
 					{
-						IMcontroller.sendMessage(MyMessage,"yazhou2@ip-54-186-214-150");// hardcode UserName
+						IMcontrol.sendMessage(MyMessage,"yazhou2@ip-54-186-214-150");// hardcode UserName
 						chatEditText.setText(null);
 						ListViewItem.add("yazhou1:"+MyMessage);
 						ListViewAdapter.notifyDataSetChanged();
@@ -78,7 +78,7 @@ public class ChatActivity extends Activity {
     }
 	
 	/**
-	 * create view from XML file,called when activity start
+	 * create view from XML file,call this function in onCreate() method
 	 */
 	private void initView()
 	{
@@ -89,6 +89,7 @@ public class ChatActivity extends Activity {
 		button = (Button) findViewById(R.id.chatbutton);
 		chatEditText = (EditText) findViewById(R.id.chatbox);
 	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -110,7 +111,7 @@ public class ChatActivity extends Activity {
 	}
 	
 	/**
-	 * need to call this function in onCreate() in order to get incoming message
+	 * need to call this function in onCreate() method in order to get incoming message
 	 */
 	private void ListenToIncomingMsg()
 	{
@@ -134,7 +135,5 @@ public class ChatActivity extends Activity {
 		},packFilter);
 		
 	}
-	
 
-	
 }
