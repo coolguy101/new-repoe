@@ -2,10 +2,12 @@ package InternetConnection;
 
 import java.util.ArrayList;
 
+import org.jivesoftware.smack.AccountManager;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.PacketListener;
 import org.jivesoftware.smack.SmackAndroid;
 import org.jivesoftware.smack.XMPPConnection;
+import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Packet;
@@ -71,18 +73,15 @@ public class IMcontroller {
 	 * @param userName your account name
 	 * @param password your password
 	 */
-	public void loginXMPPserver(String ip, int port, final String userName,final String password)
+	public void loginXMPPserver(final String userName,final String password)
 	{
-		ConnectionConfiguration config = new ConnectionConfiguration(ip,port);
-        connection = new XMPPConnection(config);
-        new AsyncTask<Void, Void, Void>()
+		new AsyncTask<Void, Void, Void>()
         {
         @Override
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try{
-				connection.connect();//connect to server
-		        connection.login(userName,password);//perform login
+				connection.login(userName,password);//perform login
 		        Presence presence = new Presence(Presence.Type.available);
 		        presence.setStatus("Online");// set status
 		        connection.sendPacket(presence);// send status to server
@@ -99,7 +98,68 @@ public class IMcontroller {
 	public static XMPPConnection getConnection() {
 		return connection;
 	}
-
+	/**
+	 * make connection to the chat server
+	 * @param ip
+	 * @param port
+	 */
+	public void connect(final String ip,final int port)
+	{ 
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				ConnectionConfiguration config = new ConnectionConfiguration(ip,port);
+		        connection = new XMPPConnection(config);
+		        try {
+					connection.connect();
+				} catch (XMPPException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		})
+        {
+        	
+        }.start();
+		
+	}
+	/**
+	 * let the newUser signup
+	 * @param userName
+	 * @param password
+	 */
+	public void signUp(final String userName, final String password)
+	{
+		
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				AccountManager actManager = connection.getAccountManager();
+				try {
+					actManager.createAccount(userName, password);
+				} catch (XMPPException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}).start();
+	}
+	/**
+	 * when makeing internet connection let the thread sleep for a bit
+	 * in order to make sure the connection is inited, example 300-500 ms
+	 * @param time
+	 */
+	public void ThreadSleep(long time)
+	{
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 }

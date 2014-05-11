@@ -1,9 +1,13 @@
 package com.example1.locationapp;
 
-import com.example1.locationapp.R;
+import org.jivesoftware.smack.AccountManager;
+import org.jivesoftware.smack.XMPPConnection;
+import org.jivesoftware.smack.XMPPException;
 
+import InternetConnection.IMcontroller;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,11 +24,11 @@ import android.widget.Toast;
  */
 public class NewUserActivity extends Activity
 {
-
+	private Context context =this;
 	private Button submit;
 	private EditText name;
 	private String username;
-	
+	private IMcontroller imController;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -52,7 +56,16 @@ public class NewUserActivity extends Activity
 	            else
 	            {
 	            	intent.putExtra("name", username);
-	 	            startActivity(intent);
+	            	imController = IMcontroller.getIMcontrollerInstance(context);
+	            	imController.connect(ChatActivity.IP,ChatActivity.PORT);
+	            	try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	            	imController.signUp(username, "123456"); //hardcode password
+	            	startActivity(intent);
 	            } 
 			}
 			});

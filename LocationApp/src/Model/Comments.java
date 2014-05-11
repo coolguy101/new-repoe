@@ -125,7 +125,12 @@ public class Comments implements Serializable{
 	
 	
 
-    /**
+    public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+
+	/**
      * setting the tag list 
      * @param tagsList -- tag list
      */

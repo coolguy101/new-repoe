@@ -109,7 +109,6 @@ public class SubCommetsRead extends Activity {
 		button1 = (Button) findViewById(R.id.buttonSaveSubComments);
 		button1.setText("Send");
 		comment_list = new ArrayList<Comments>();
-		
 		ActionBar bar = getActionBar();
 		bar.setHomeButtonEnabled(false);
 		httpclient = new DefaultHttpClient();
@@ -380,8 +379,9 @@ public class SubCommetsRead extends Activity {
 							// adding chat function to the app
 							case 2:
 								Comments comments = comment_list.get(position);
+								comments.setUserName(user.getUser_name());
 								Intent intent = new Intent(SubCommetsRead.this,ChatActivity.class);
-								intent.putExtra("Comment",comments);
+								intent.putExtra("UserName",comments.getUserName());
 								startActivity(intent);
 								
 						}

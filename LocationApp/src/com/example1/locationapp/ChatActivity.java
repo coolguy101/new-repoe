@@ -38,7 +38,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class ChatActivity extends Activity {
-	private Comments comment;
 	private ListView ChatListView;
 	private ArrayAdapter<String> ListViewAdapter;
 	private ArrayList<String> ListViewItem;
@@ -48,17 +47,21 @@ public class ChatActivity extends Activity {
 	private PacketFilter packFilter = new MessageTypeFilter(Message.Type.chat);
 	private Handler handler = new Handler();
 	private IMcontroller IMcontrol;
+	private String LoginUserName;
 	public final static String IP = "54.186.214.150";
 	public final static int PORT = 5222;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chat);
-		comment = (Comments) getIntent().getSerializableExtra("comments");
+		LoginUserName=getIntent().getStringExtra("UserName");
 		initView(); // must have this line
 		IMcontrol = IMcontroller.getIMcontrollerInstance(context);  // make a new controller for IM
-		IMcontrol.loginXMPPserver(IP,PORT,"yazhou1","123456");// hardcode userName and password for testing
-		ListenToIncomingMsg();
+		IMcontrol.connect(IP, PORT);
+		IMcontrol.ThreadSleep(300);
+		IMcontrol.loginXMPPserver("yazhou1","123456");// hardcode userName and password for testing
+		IMcontrol.ThreadSleep(200);
+		ListenToIncomingMsg();// must add this line to listen to incoming message
 		button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -114,7 +117,7 @@ public class ChatActivity extends Activity {
 	 * need to call this function in onCreate() method in order to get incoming message
 	 */
 	private void ListenToIncomingMsg()
-	{
+	{	IMcontrol.ThreadSleep(200);
 		XMPPConnection xmppConnection =  InternetConnection.IMcontroller.getConnection();
 		xmppConnection.addPacketListener(new PacketListener() {
 		String message = "";	

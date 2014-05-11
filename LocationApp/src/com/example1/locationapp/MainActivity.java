@@ -26,6 +26,7 @@ import Controller.LocalFileSaver;
 import InternetConnection.ConnectToInternet;
 import InternetConnection.ElasticSearchResponse;
 import InternetConnection.ElasticSearchSearchResponse;
+import InternetConnection.IMcontroller;
 import Model.CommentUser;
 import Model.Comments;
 import Model.SubCommentModel;
@@ -101,7 +102,6 @@ public class MainActivity extends Activity implements OnRefreshListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		ActionBar bar = getActionBar();
-		
 		Intent intent = getIntent();
 		final ConnectivityManager connMgr = (ConnectivityManager) this
 				.getSystemService(Context.CONNECTIVITY_SERVICE);
