@@ -72,7 +72,7 @@ public class ChatActivity extends Activity {
 					{
 						IMcontrol.sendMessage(MyMessage,"yazhou2@ip-54-186-214-150");// hardcode UserName
 						chatEditText.setText(null);
-						ListViewItem.add("yazhou1:"+MyMessage);
+						ListViewItem.add(MyMessage+"   ");
 						newChatAdapter.notifyDataSetChanged();
 					}
 					else
@@ -89,8 +89,8 @@ public class ChatActivity extends Activity {
 	{
 		ChatListView = (ListView) findViewById(R.id.listView1);
 		ListViewItem = new ArrayList<String>();
-		//ListViewAdapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.listitem,ListViewItem);
-		//ChatListView.setAdapter(ListViewAdapter);
+		ActionBar bar  = getActionBar();
+		
 		button = (Button) findViewById(R.id.chatbutton);
 		chatEditText = (EditText) findViewById(R.id.chatbox);
 		newChatAdapter = new ChatAdapter(getApplicationContext(),R.layout.chat_layout_left, ListViewItem);

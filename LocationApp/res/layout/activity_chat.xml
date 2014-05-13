@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
+    android:background="@drawable/chatbackground"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example1.locationapp.ChatActivity"
@@ -15,6 +16,7 @@
         android:listSelector="@android:color/transparent"
         android:divider="@null"
         android:transcriptMode="normal"
+        android:background="@android:color/transparent"
         android:layout_alignParentTop="true" >
     </ListView>
     
@@ -35,10 +37,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Send"
+            android:background="@drawable/skin_aio_send_button_disabled"
             android:layout_alignParentRight="true"
-            
             />
-    </RelativeLayout>
-    
-
+</RelativeLayout>
 </RelativeLayout>

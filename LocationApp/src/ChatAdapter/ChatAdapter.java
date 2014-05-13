@@ -33,7 +33,7 @@ public class ChatAdapter extends ArrayAdapter<String> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		String ChatMessage = chat_list.get(position);
 		inflator = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		if(ChatMessage.contains("yazhou1:"))
+		if(ChatMessage.endsWith("   "))
 		{
 			convertView = inflator.inflate(R.layout.chat_layout_right, parent,false);
 			holder.message = (TextView) convertView.findViewById(R.id.textView1);
