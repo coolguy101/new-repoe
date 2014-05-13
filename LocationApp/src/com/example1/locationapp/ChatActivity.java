@@ -16,6 +16,7 @@ import org.jivesoftware.smack.packet.Presence;
 import com.google.android.gms.drive.internal.x;
 import com.google.android.gms.internal.in;
 
+import ChatAdapter.ChatAdapter;
 import InternetConnection.IMcontroller;
 import Model.Comments;
 import android.app.ActionBar;
@@ -39,7 +40,7 @@ import android.widget.Toast;
 
 public class ChatActivity extends Activity {
 	private ListView ChatListView;
-	private ArrayAdapter<String> ListViewAdapter;
+	//private ArrayAdapter<String> ListViewAdapter;
 	private ArrayList<String> ListViewItem;
 	private Button button;
 	private EditText chatEditText;
@@ -48,6 +49,7 @@ public class ChatActivity extends Activity {
 	private Handler handler = new Handler();
 	private IMcontroller IMcontrol;
 	private String LoginUserName;
+	private ChatAdapter newChatAdapter;
 	public final static String IP = "54.186.214.150";
 	public final static int PORT = 5222;
 	@Override
@@ -58,9 +60,9 @@ public class ChatActivity extends Activity {
 		initView(); // must have this line
 		IMcontrol = IMcontroller.getIMcontrollerInstance(context);  // make a new controller for IM
 		IMcontrol.connect(IP, PORT);
-		IMcontrol.ThreadSleep(300);
+		IMcontrol.ThreadSleep(500);
 		IMcontrol.loginXMPPserver("yazhou1","123456");// hardcode userName and password for testing
-		IMcontrol.ThreadSleep(200);
+		IMcontrol.ThreadSleep(500);
 		ListenToIncomingMsg();// must add this line to listen to incoming message
 		button.setOnClickListener(new OnClickListener() {
 			@Override
@@ -71,7 +73,7 @@ public class ChatActivity extends Activity {
 						IMcontrol.sendMessage(MyMessage,"yazhou2@ip-54-186-214-150");// hardcode UserName
 						chatEditText.setText(null);
 						ListViewItem.add("yazhou1:"+MyMessage);
-						ListViewAdapter.notifyDataSetChanged();
+						newChatAdapter.notifyDataSetChanged();
 					}
 					else
 					{
@@ -87,10 +89,12 @@ public class ChatActivity extends Activity {
 	{
 		ChatListView = (ListView) findViewById(R.id.listView1);
 		ListViewItem = new ArrayList<String>();
-		ListViewAdapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.listitem,ListViewItem);
-		ChatListView.setAdapter(ListViewAdapter);
+		//ListViewAdapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.listitem,ListViewItem);
+		//ChatListView.setAdapter(ListViewAdapter);
 		button = (Button) findViewById(R.id.chatbutton);
 		chatEditText = (EditText) findViewById(R.id.chatbox);
+		newChatAdapter = new ChatAdapter(getApplicationContext(),R.layout.chat_layout_left, ListViewItem);
+		ChatListView.setAdapter(newChatAdapter);
 	}
 	
 	@Override
@@ -126,11 +130,11 @@ public class ChatActivity extends Activity {
 				Message incomingMessage = (Message) arg0;
 				if(incomingMessage.getBody()!=null)
 				{   message = incomingMessage.getBody().toString();
-					ListViewItem.add(incomingMessage.getFrom().toString().substring(0,incomingMessage.getFrom().toString().indexOf("@"))+":"+message);
+					ListViewItem.add(message);
 					handler.post(new Runnable() {
 						@Override
 						public void run() {
-						ListViewAdapter.notifyDataSetChanged();
+						newChatAdapter.notifyDataSetChanged();
 						}
 					});
 				}

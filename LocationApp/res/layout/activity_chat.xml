@@ -12,7 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/chatlinearlayout"
+        android:listSelector="@android:color/transparent"
         android:divider="@null"
+        android:transcriptMode="normal"
         android:layout_alignParentTop="true" >
     </ListView>
     
@@ -21,7 +23,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_alignParentBottom="true"
-        >
+		>
         <EditText 
             android:id="@+id/chatbox"
             android:layout_width="match_parent"
