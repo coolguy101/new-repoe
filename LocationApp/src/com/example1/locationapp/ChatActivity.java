@@ -47,7 +47,6 @@ public class ChatActivity extends Activity {
 	private Context context = this;
 	private PacketFilter packFilter = new MessageTypeFilter(Message.Type.chat);
 	private Handler handler = new Handler();
-	private IMcontroller IMcontrol;
 	private String LoginUserName;
 	private ChatAdapter newChatAdapter;
 	public final static String IP = "54.186.214.150";
@@ -58,11 +57,8 @@ public class ChatActivity extends Activity {
 		setContentView(R.layout.activity_chat);
 		LoginUserName=getIntent().getStringExtra("UserName");
 		initView(); // must have this line
-		IMcontrol = IMcontroller.getIMcontrollerInstance(context);  // make a new controller for IM
-		IMcontrol.connect(IP, PORT);
-		IMcontrol.ThreadSleep(500);
-		IMcontrol.loginXMPPserver("yazhou1","123456");// hardcode userName and password for testing
-		IMcontrol.ThreadSleep(500);
+		MainPage.IMcontrol.loginXMPPserver("yazhou1","123456");
+		MainPage.IMcontrol.ThreadSleep(300);
 		ListenToIncomingMsg();// must add this line to listen to incoming message
 		button.setOnClickListener(new OnClickListener() {
 			@Override
@@ -70,7 +66,7 @@ public class ChatActivity extends Activity {
 					String MyMessage = chatEditText.getText().toString();
 					if(!MyMessage.isEmpty())
 					{
-						IMcontrol.sendMessage(MyMessage,"yazhou2@ip-54-186-214-150");// hardcode UserName
+						MainPage.IMcontrol.sendMessage(MyMessage,"yazhou2@ip-54-186-214-150");// hardcode UserName
 						chatEditText.setText(null);
 						ListViewItem.add(MyMessage+"   ");
 						newChatAdapter.notifyDataSetChanged();
@@ -121,7 +117,7 @@ public class ChatActivity extends Activity {
 	 * need to call this function in onCreate() method in order to get incoming message
 	 */
 	private void ListenToIncomingMsg()
-	{	IMcontrol.ThreadSleep(200);
+	{	
 		XMPPConnection xmppConnection =  InternetConnection.IMcontroller.getConnection();
 		xmppConnection.addPacketListener(new PacketListener() {
 		String message = "";	

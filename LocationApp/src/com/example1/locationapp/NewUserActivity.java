@@ -28,8 +28,6 @@ public class NewUserActivity extends Activity
 	private Button submit;
 	private EditText name;
 	private String username;
-	private IMcontroller imController;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{	
@@ -56,15 +54,9 @@ public class NewUserActivity extends Activity
 	            else
 	            {
 	            	intent.putExtra("name", username);
-	            	imController = IMcontroller.getIMcontrollerInstance(context);
-	            	imController.connect(ChatActivity.IP,ChatActivity.PORT);
-	            	try {
-						Thread.sleep(500);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-	            	imController.signUp(username, "123456"); //hardcode password
+	            	MainPage.IMcontrol.signUp(username,"123456");
+	            	MainPage.IMcontrol.ThreadSleep(500);
+	            	MainPage.IMcontrol.loginXMPPserver(username, "123456");
 	            	startActivity(intent);
 	            } 
 			}

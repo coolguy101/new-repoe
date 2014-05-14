@@ -1,10 +1,13 @@
 package com.example1.locationapp;
 
 import Controller.LocalFileLoder;
+import InternetConnection.IMcontroller;
 import Model.UserModel;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -23,8 +26,8 @@ public class MainPage extends Activity {
 	private Button guest;
 	private String name;
 	private LocalFileLoder fileLoader = new LocalFileLoder(this);
-
-	
+	public static IMcontroller IMcontrol;
+	private Context context = this ;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		//hide the action bar
@@ -32,13 +35,15 @@ public class MainPage extends Activity {
 		actionBar.hide();
 		// Determin if the file exist
 		fileLoader.Exist();
+		IMcontrol=IMcontroller.getIMcontrollerInstance(this);
+		IMcontrol.connect(ChatActivity.IP,ChatActivity.PORT);
+		System.out.println("logging in from MainPage");
 		if (fileLoader.exist()) {
 
 			user = fileLoader.loadFromFile();
 			if (!user.getUser_name().equals("")) {
 				Intent intent = new Intent(MainPage.this, MainActivity.class);
 				intent.putExtra("name", user.getUser_name());
-
 				startActivity(intent);
 			}
 		}
@@ -48,10 +53,7 @@ public class MainPage extends Activity {
 
 		newUser = (Button) findViewById(R.id.button1);
 		guest = (Button) findViewById(R.id.guest);
-
 		guest.setOnClickListener(new OnClickListener() {
-			
-			
 			@Override
 			public void onClick(View arg0) {
 				name = "";

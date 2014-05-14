@@ -87,9 +87,6 @@ public class MainActivity extends Activity implements OnRefreshListener {
 	private UserModel user;
 	private ConnectToInternet connects = new ConnectToInternet();
 	private PullToRefreshLayout mPullToRefreshLayout;
-	
-	
-	
 	/**
 	 * onCreate method.
 	 * Once the activity is created, first set the content view, and initialize ActionBar and a Spinner for sort options.
