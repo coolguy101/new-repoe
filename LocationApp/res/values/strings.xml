@@ -20,5 +20,7 @@
     <string name="title_activity_edit">EditActivity</string>
     <string name="title_activity_sub_favourite">SubFavourite</string>
     <string name="title_activity_chat">ChatActivity</string>
+    <string name="title_activity_switch_tab">SwitchTabActivity</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

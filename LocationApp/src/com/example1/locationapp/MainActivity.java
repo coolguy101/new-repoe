@@ -495,7 +495,11 @@ public class MainActivity extends Activity implements OnRefreshListener {
 			}
 
 			break;
-
+		
+		case R.id.item8:
+			Intent intent = new Intent(MainActivity.this,SwitchTabActivity.class);
+			startActivity(intent);
+			break;
 		case R.id.item2:
 			// this is to start change location activity
 			// request code is 7

@@ -148,6 +148,10 @@
             android:name="com.example1.locationapp.ChatActivity"
             android:label="@string/title_activity_chat" >
         </activity>
+        <activity
+            android:name="com.example1.locationapp.SwitchTabActivity"
+            android:label="@string/title_activity_switch_tab" >
+        </activity>
     </application>
 
 </manifest>

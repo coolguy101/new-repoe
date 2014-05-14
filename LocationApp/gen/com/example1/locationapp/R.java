@@ -649,11 +649,12 @@ containing a value of this type.
         public static final int RelativeLayout1=0x7f050027;
         public static final int RelativeLayout2=0x7f050034;
         public static final int Submit=0x7f050028;
-        public static final int action_listview=0x7f050056;
-        public static final int action_scrollview=0x7f050058;
-        public static final int action_settings=0x7f050059;
-        public static final int action_webview=0x7f050057;
-        public static final int bigg=0x7f050051;
+        public static final int ViewPager=0x7f050050;
+        public static final int action_listview=0x7f050057;
+        public static final int action_scrollview=0x7f050059;
+        public static final int action_settings=0x7f05005a;
+        public static final int action_webview=0x7f050058;
+        public static final int bigg=0x7f050052;
         public static final int button1=0x7f05001f;
         public static final int button2=0x7f050020;
         public static final int buttonChooseImage=0x7f050018;
@@ -670,7 +671,7 @@ containing a value of this type.
         public static final int editText2=0x7f05001e;
         public static final int editText20=0x7f050044;
         public static final int editTextSubmitSubComments=0x7f05002c;
-        public static final int fav=0x7f050063;
+        public static final int fav=0x7f050065;
         public static final int favouritelist=0x7f050022;
         public static final int footer_1=0x7f050038;
         public static final int footer_layout=0x7f050037;
@@ -679,30 +680,31 @@ containing a value of this type.
         public static final int imageButton1=0x7f050032;
         public static final int imageButton2=0x7f050035;
         public static final int imageView1=0x7f050021;
-        public static final int imageView88=0x7f050053;
+        public static final int imageView88=0x7f050054;
         public static final int imageViewThumb=0x7f050013;
         public static final int imageViewThumbSmall=0x7f050014;
         public static final int imageimage11=0x7f050046;
         public static final int inside=0x7f050004;
-        public static final int item1=0x7f05005b;
-        public static final int item2=0x7f05005c;
-        public static final int item3=0x7f05005e;
-        public static final int item4=0x7f05005f;
-        public static final int item5=0x7f050060;
-        public static final int item6=0x7f050061;
-        public static final int item7=0x7f050062;
-        public static final int item99=0x7f05005d;
+        public static final int item1=0x7f05005c;
+        public static final int item2=0x7f05005d;
+        public static final int item3=0x7f05005f;
+        public static final int item4=0x7f050060;
+        public static final int item5=0x7f050061;
+        public static final int item6=0x7f050062;
+        public static final int item7=0x7f050063;
+        public static final int item8=0x7f050064;
+        public static final int item99=0x7f05005e;
         public static final int layoutButtons=0x7f050016;
         public static final int listView1=0x7f05000f;
         public static final int listViewSubComments=0x7f05002b;
-        public static final int loca=0x7f050054;
+        public static final int loca=0x7f050055;
         public static final int map=0x7f050029;
-        public static final int menu_item_search=0x7f05005a;
+        public static final int menu_item_search=0x7f05005b;
         public static final int namedisplay=0x7f05001b;
         public static final int new_profile_button=0x7f050045;
         public static final int none=0x7f050009;
         public static final int normal=0x7f05000a;
-        public static final int number=0x7f050055;
+        public static final int number=0x7f050056;
         public static final int outside=0x7f050005;
         public static final int progressBar=0x7f050019;
         public static final int ptr_content=0x7f050006;
@@ -712,9 +714,9 @@ containing a value of this type.
         public static final int ptr_progress=0x7f050008;
         public static final int ptr_text=0x7f050007;
         public static final int satellite=0x7f05000b;
-        public static final int save=0x7f050064;
+        public static final int save=0x7f050066;
         public static final int search_list=0x7f05004f;
-        public static final int smalll=0x7f050052;
+        public static final int smalll=0x7f050053;
         public static final int spb_interpolator_accelerate=0x7f050000;
         public static final int spb_interpolator_acceleratedecelerate=0x7f050002;
         public static final int spb_interpolator_decelerate=0x7f050003;
@@ -724,7 +726,7 @@ containing a value of this type.
         public static final int tagedit=0x7f05002e;
         public static final int tagtextView1=0x7f05002d;
         public static final int terrain=0x7f05000c;
-        public static final int text1=0x7f050050;
+        public static final int text1=0x7f050051;
         public static final int textView1=0x7f05002f;
         public static final int textView121=0x7f050039;
         public static final int textView188=0x7f050048;
@@ -763,20 +765,25 @@ containing a value of this type.
         public static final int activity_search=0x7f03000c;
         public static final int activity_sub_commets_read=0x7f03000d;
         public static final int activity_sub_favourite=0x7f03000e;
-        public static final int activity_tag=0x7f03000f;
-        public static final int chat_layout_left=0x7f030010;
-        public static final int chat_layout_right=0x7f030011;
-        public static final int chatlistview=0x7f030012;
-        public static final int default_header=0x7f030013;
-        public static final int dialogui=0x7f030014;
-        public static final int footlayout=0x7f030015;
-        public static final int fragment_edit=0x7f030016;
-        public static final int fragment_new_profile=0x7f030017;
-        public static final int fragment_profile=0x7f030018;
-        public static final int fragment_search=0x7f030019;
-        public static final int fragment_tag=0x7f03001a;
-        public static final int listitem=0x7f03001b;
-        public static final int listlayout=0x7f03001c;
+        public static final int activity_switch_tab=0x7f03000f;
+        public static final int activity_tag=0x7f030010;
+        public static final int chat_layout_left=0x7f030011;
+        public static final int chat_layout_right=0x7f030012;
+        public static final int chatlistview=0x7f030013;
+        public static final int default_header=0x7f030014;
+        public static final int dialogui=0x7f030015;
+        public static final int footlayout=0x7f030016;
+        public static final int fragment_blank_a=0x7f030017;
+        public static final int fragment_blank_fragment_b=0x7f030018;
+        public static final int fragment_blank_fragment_c=0x7f030019;
+        public static final int fragment_edit=0x7f03001a;
+        public static final int fragment_new_profile=0x7f03001b;
+        public static final int fragment_profile=0x7f03001c;
+        public static final int fragment_search=0x7f03001d;
+        public static final int fragment_switch_tab=0x7f03001e;
+        public static final int fragment_tag=0x7f03001f;
+        public static final int listitem=0x7f030020;
+        public static final int listlayout=0x7f030021;
     }
     public static final class menu {
         public static final int base_menu=0x7f0c0000;
@@ -795,7 +802,8 @@ containing a value of this type.
         public static final int sign_in=0x7f0c000d;
         public static final int sub_commets_read=0x7f0c000e;
         public static final int sub_favourite=0x7f0c000f;
-        public static final int tag=0x7f0c0010;
+        public static final int switch_tab=0x7f0c0010;
+        public static final int tag=0x7f0c0011;
     }
     public static final class string {
         public static final int action_settings=0x7f09001f;
@@ -894,6 +902,7 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f090017;
+        public static final int hello_blank_fragment=0x7f090032;
         public static final int hello_world=0x7f090020;
         public static final int pull_to_refresh_pull_label=0x7f090001;
         public static final int pull_to_refresh_refreshing_label=0x7f090003;
@@ -914,6 +923,7 @@ containing a value of this type.
         public static final int title_activity_sign_in=0x7f090027;
         public static final int title_activity_sub_commets_read=0x7f090025;
         public static final int title_activity_sub_favourite=0x7f09002f;
+        public static final int title_activity_switch_tab=0x7f090031;
         public static final int title_activity_tag=0x7f09002a;
     }
     public static final class style {
