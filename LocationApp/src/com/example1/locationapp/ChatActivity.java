@@ -16,9 +16,9 @@ import org.jivesoftware.smack.packet.Presence;
 import com.google.android.gms.drive.internal.x;
 import com.google.android.gms.internal.in;
 
-import ChatAdapter.ChatAdapter;
 import InternetConnection.IMcontroller;
 import Model.Comments;
+import adapters.ChatAdapter;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;

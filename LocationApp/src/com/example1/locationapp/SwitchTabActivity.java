@@ -1,24 +1,16 @@
 package com.example1.locationapp;
 
-import ChatAdapter.ViewPagerAdapter;
-import Fragments.BlankFragmentB;
+import adapters.ViewPagerAdapter;
+import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
-import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
 
 public class SwitchTabActivity extends FragmentActivity implements TabListener {
 	private ActionBar actionBar;
@@ -27,14 +19,36 @@ public class SwitchTabActivity extends FragmentActivity implements TabListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_switch_tab);
+		viewPager = (ViewPager) findViewById(R.id.ViewPager);
+		ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+		viewPager.setAdapter(adapter);
+		viewPager.setOnPageChangeListener(new OnPageChangeListener() {
+			
+			@Override
+			public void onPageSelected(int arg0) {
+				// TODO Auto-generated method stub
+				actionBar.setSelectedNavigationItem(arg0);
+			}
+			
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		initView();
 	}
 	/**
 	 * make tabs for this activity
 	 */
 	private void initView()
-	{	viewPager = (ViewPager) findViewById(R.id.ViewPager);
-		viewPager.setAdapter(new MyAdapter(getSupportFragmentManager()));
+	{	
 		actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		ActionBar.Tab tab1 = actionBar.newTab();
@@ -75,6 +89,7 @@ public class SwitchTabActivity extends FragmentActivity implements TabListener {
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		// TODO Auto-generated method stub
 		System.out.println("OntableSelected"+tab.getPosition());
+		viewPager.setCurrentItem(tab.getPosition(),true);
 	}
 
 	@Override
@@ -88,29 +103,5 @@ public class SwitchTabActivity extends FragmentActivity implements TabListener {
 		System.out.println("OntableReselected"+tab.getPosition());
 		
 	}
-	
-	class MyAdapter extends FragmentPagerAdapter
-	{
 
-		public MyAdapter(FragmentManager fm) {
-			super(fm);
-			// TODO Auto-generated constructor stub
-		}
-
-		@Override
-		public android.support.v4.app.Fragment getItem(int arg0) {
-			// TODO Auto-generated method stub
-			BlankFragmentB fragment = new BlankFragmentB();
-			return fragment;
-		}
-
-		@Override
-		public int getCount() {
-			// TODO Auto-generated method stub
-			return 3;
-		}
-		
-	}
-
-	
 }
